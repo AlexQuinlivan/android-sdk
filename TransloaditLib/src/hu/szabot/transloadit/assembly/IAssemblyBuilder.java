@@ -76,6 +76,22 @@ public interface IAssemblyBuilder
      */
     public void setField(String key, String value) throws InvalidFieldKeyException, AlreadyDefinedKeyException;
 
+    
+    /**Sets a custom parameter in the current assembly
+     * 
+     * @param key Key of the field
+     * @param value Value of the field
+     * @throws InvalidFieldKeyException Thrown when an invalid (reserved) field key is tried to be used
+     * @throws AlreadyDefinedKeyException Thrown when an already defined key (in files or in fields) is tried to be used
+     */
+    public void setParam(String key, String value) throws InvalidFieldKeyException;
+
+    /**
+     * If sets to true then the server response wait until the assembly execution is finished.
+     * @param blocking Sets the blocking property of the assembly.
+     */
+    public void setBlocking(boolean blocking);
+    
     /**
      * Sets the notification URL of the assembly, which will be requested after assembly is completed
      * @param notifyURL Notification URL (e.g.: 'http://my.domain.me/application')
