@@ -153,6 +153,33 @@ public class AssemblyBuilder implements IAssemblyBuilder
         }
     }
 
+    public void setParam(String key, String value) throws InvalidFieldKeyException
+    {
+    	
+    	try
+        {
+            validateKey(key);
+            
+            data.addParam(key, value);
+        }
+        catch (InvalidFieldKeyException e)
+        {
+            TransloaditLogger.logError(this.getClass(), e);
+            throw e;
+        }
+    }
+
+    public void setBlocking(boolean blocking)
+    {
+    	if(blocking)
+    	{
+    		data.getParams().put("blocking", "true");
+    	}else
+    	{
+    		data.getParams().remove("blocking");
+    	}
+    }
+    
     public void setNotifyURL(String notifyURL)
     {
     	if(notifyURL!=null)
@@ -207,7 +234,7 @@ public class AssemblyBuilder implements IAssemblyBuilder
      */
     protected void validateKey(String key) throws InvalidFieldKeyException
     {
-        String[] invalidKeys = {"params", "template_id", "notify_url"};
+        String[] invalidKeys = {"params", "template_id", "notify_url","steps", "blocking","auth"};
         if (Arrays.asList(invalidKeys).contains(key))
         {
             throw new InvalidFieldKeyException(key);
