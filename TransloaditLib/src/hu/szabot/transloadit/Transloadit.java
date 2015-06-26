@@ -80,13 +80,31 @@ public class Transloadit implements ITransloadit
 		{
 			TransloaditLogger.logError(getClass(), e1);
 		}
-
-        
-
         return null;
     }
 
-    private String getBoredInstance()
+	public TransloaditResponse getAssembly(String assemblyID) {
+		TransloaditRequest request = request();
+		try {
+			request.setPath("/assemblies/" +assemblyID);
+			request.setMethod(RequestMethod.GET);
+
+		} catch (URISyntaxException e2)
+		{
+			TransloaditLogger.logError(getClass(), e2);
+		}
+		TransloaditResponse response;
+		try {
+			response = request.execute();
+			return response;
+		} catch (IOException e1)
+		{
+			TransloaditLogger.logError(getClass(), e1);
+		}
+		return null;
+	}
+
+	private String getBoredInstance()
     {
         TransloaditRequest request = request();
         

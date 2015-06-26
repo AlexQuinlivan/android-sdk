@@ -17,6 +17,13 @@ public interface ITransloadit
     TransloaditResponse deleteAssembly(String assemblyID);
 
     /**
+     * Returns the information of the assambly with the given assembly ID
+     * @param assemblyID ID of the assembly which will be tried to be deleted
+     * @return Represents the whole result of the request.
+     */
+    TransloaditResponse getAssembly(String assemblyID);
+
+    /**
      * Tries to create the specified assembly on Transloadit. Bored instance is requested at first. If there is one, then it will
      * be used to proceed the request, which can be completed on a bored instance.
      * @param assembly Specified assembly which will be tried to be created.
