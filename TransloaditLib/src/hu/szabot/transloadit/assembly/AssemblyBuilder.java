@@ -17,6 +17,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TimeZone;
 
 import android.annotation.SuppressLint;
 
@@ -115,6 +116,7 @@ public class AssemblyBuilder implements IAssemblyBuilder
 	public void setAuthExpires(Date dateTime)
     {
     	DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss+00:00");
+    	df.setTimeZone(TimeZone.getTimeZone("UTC"));
         auth.put("expires",df.format(dateTime));
     }
     
